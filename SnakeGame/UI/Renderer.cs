@@ -63,6 +63,17 @@ public static class Renderer
     }
     
     /// <summary>
+    /// Rysuje jedzenie na planszy
+    /// </summary>
+    public static void DrawFood(Food food)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.SetCursorPosition(food.Position.X + 1, food.Position.Y + 1);
+        Console.Write("★");
+        Console.ResetColor();
+    }
+    
+    /// <summary>
     /// Czyści pozycję na planszy (gdy wąż się rusza)
     /// </summary>
     public static void ClearPosition(int x, int y)
