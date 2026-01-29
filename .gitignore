@@ -1,0 +1,4 @@
+SnakeGame/bin/
+SnakeGame/obj/
+*.sln
+.vscode/
