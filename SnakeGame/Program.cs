@@ -1,4 +1,6 @@
 ﻿using SnakeGame.UI;
+using SnakeGame.Engine;
+using SnakeGame.Models;
 
 // Pokaż menu i pobierz wybór
 int choice = Menu.Show();
@@ -10,11 +12,37 @@ if (choice == 0)
     return;
 }
 
-// Na razie pokazujemy tylko planszę
-string mode = choice == 1 ? "Solo" : "Co-op";
+// Tryb gry
+bool isCoop = choice == 2;
 
+// Rysuj planszę
 Renderer.DrawBoard();
-Renderer.DrawMessage($"Tryb: {mode} | Naciśnij dowolny klawisz aby wyjść...");
+
+// Stwórz węża na środku planszy
+var snake1 = new Snake(
+    new Position(Renderer.BoardWidth / 2, Renderer.BoardHeight / 2),
+    Direction.Right
+);
+
+// Rysuj węża
+Renderer.DrawSnake(snake1, ConsoleColor.Green);
+
+// Jeśli coop, stwórz drugiego węża
+if (isCoop)
+{
+    var snake2 = new Snake(
+        new Position(Renderer.BoardWidth / 2, Renderer.BoardHeight / 2 - 3),
+        Direction.Right
+    );
+    Renderer.DrawSnake(snake2, ConsoleColor.Cyan);
+    Renderer.DrawScore(0, 0);
+}
+else
+{
+    Renderer.DrawScore(0);
+}
+
+Renderer.DrawMessage("Naciśnij dowolny klawisz aby wyjść...");
 
 Console.ReadKey(true);
 Console.Clear();
